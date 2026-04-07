@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base */
+body {
+    display: flex;
+    height: 100vh;
+    width: 100vm;
+    overflow: hidden;
+    background-color: #1a1d2e;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar > background */
+#sidebar {
+    width: 220px;
+    min-width: 220px;
+    background-color: #12152a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0 10px 0;
+    transition: width 0.3s ease, min-width 0.3s ease;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* Sidebar > collapsed */
+#sidebar.collapsed {
+    width: 0;
+    min-width: 0;
+}
+
+/* Sidebar > content */
+#sidebar-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Sidebar > App Title */
+#app-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+/* Sidebar > Buttons > Create, About, Feedback */
+#create-btn,
+#about-btn,
+#feedback-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: left;
+    cursor: pointer;
+    padding: 4px 0;
+    text-transform: uppercase;
+}
+
+/* Sidebar > Buttons > Hover */
+#create-btn:hover,
+#about-btn:hover,
+#feedback-btn:hover {
+    color: #a78bfa;
+}
+
+/* Sidebar > Buttons > Category Filter */
+#category-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Sidebar > Buttons > Category Filter > Dropdown */
+#category-select {
+    background-color: #1e2240;
+    color: #ffffff;
+    border: 1px solid #3a3f6e;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+/* Sidebar > Divider */
+hr {
+    border: none;
+    border-top: 1px solid #2e3255;
+    margin: 4px 0;
+}
+
+/* Sidebar > Coming Soon */
+#coming-soon {
+    font-size: 0.75rem;
+    color: #555a80;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+/* Spot list (unpopulated currently) */
+#spot-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#spot-list li {
+    background-color: #1e2240;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#spot-list li:hover {
+    background-color: #2a2f5a;
+}
+
+/* Sidebar > Collapse Button */
+#collapse-btn {
+    background-color: #1e2240;
+    border: 1px solid #3a3f6e;
+    color: #ffffff;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    padding: 6px;
+    margin: 10px 16px 0 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+#collapse-btn:hover {
+    background-color: #2a2f5a;
+}
+
+/* Sidebar > Collapsed State */
+#show-sidebar-tab {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #12152a;
+    border: 1px solid #3a3f6e;
+    color: #ffffff;
+    font-size: 1.2rem;
+    padding: 12px 6px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    z-index: 1001;
+    display: none;
+}
+
+#show-sidebar-tab.visible {
+    display: block;
+}
+
+/* Map */
+#map-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Map > Search Bar */
+#search-bar {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background-color: #12152a;
+    border: 1px solid #3a3f6e;
+    border-radius: 20px;
+    padding: 6px, 12px;
+    gap: 8px;
+    width: 300px;
+}
+
+/* Map > Search Bar > Input */
+#search-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+#search-input::placeholder {
+    color: #555a80;
+}
+
+#search-icon,
+#settings-icon {
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#map {
+    flex: 1;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Modal > Popup for adding a pot */
+#modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* Modal > Popup for adding a pot > Content */
+#modal-content {
+    background-color: #12152a;
+    border: 1px solid #3a3f6e;
+    border-radius: 12px;
+    padding: 28px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Modal > Popup for adding a pot > Hidden State */
+#modal.hidden {
+    display: none;
+}
+
+/* Modal > Popup for adding a pot > Content > Title */
+#modal-content h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Modal > Popup for adding a pot > Content > Elements */
+#modal-content input,
+#modal-content textarea,
+#modal-content select {
+    background-color: #1e2240;
+    border: 1px solid #3a3f6e;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    outline: none;
+    width: 100%;
+}
+
+/* Modal > Popup for adding a pot > Content > Textarea */
+#modal-content textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+/* Modal > Popup for adding a pot > Content > Buttons */
+#modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Modal > Popup for adding a pot > Content > Buttons > Submit */
+#submit-spot {
+    background-color: #a78bfa;
+    border: none;
+    border-radius: 8px;
+    color: #000000;
+    font-weight: 600;
+    padding: 8px 18px;
+    cursor: pointer;
+}
+
+#submit-spot:hover {
+    background-color: #c4b5fd;    
+}
+
+/* Modal > Popup for adding a pot > Content > Buttons > Cancel */
+#cancel-spot {
+    background-color: transparent;
+    border: 1px solid #3a3f6e;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 8px 18px;
+    cursor: pointer;
+}
+
+#cancel-spot:hover {
+    background-color: #1e2240;
+}

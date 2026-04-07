@@ -56,6 +56,9 @@
       <button id="collapse-btn">&#8249;</button>
     </aside>
 
+    <!-- Peek tab shown when sidebar is collapsed -->
+    <button id="show-sidebar-tab">&#8250;</button>
+
     <!-- RIGHT - Map area -->
     <main id="map-container">
       <!-- TOP LEFT - Search bar -->
@@ -70,7 +73,7 @@
 
     </main>
 
-    <!-- MODAL — Create a spot (hidden by default) -->
+    <!-- MODAL — Popup for creating a spot (hidden by default) -->
     <div id="modal" class="hidden">
         <div id="modal-content">
             <h2>Add a Spot</h2>
@@ -104,7 +107,7 @@
         <script
             src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
         </script>
-
+        <!-- App JS (logic) -->
         <script
             src="app.js">
         </script>
