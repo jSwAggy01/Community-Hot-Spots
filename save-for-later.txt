@@ -1,0 +1,5 @@
+Project URL
+https://ryeshhidxtvioiejypsb.supabase.co
+
+Anon Public Key
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5ZXNoaGlkeHR2aW9pZWp5cHNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MTg1MTUsImV4cCI6MjA5MTA5NDUxNX0.fkLsn4fuYlzT2MR7LCRRFcTtjAvfzi3PeomstFX9BOU
