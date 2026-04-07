@@ -1,0 +1,112 @@
+<!-- Boilerplate -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Hot Spots</title>
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- LEFT - sidebar -->
+    <aside id="sidebar">
+      <div id="sidebar-content">
+        <h1 id="app-title">Community<br />Hot Spots</h1>
+
+        <button id="create-btn">📍 CREATE</button>
+
+        <div id="category-filter">
+          🗂️ CATEGORY
+          <select id="category-select">
+            <option value="all">All</option>
+            <option value="Boba/Coffee Shop">Cafe / Coffee Shop</option>
+            <option value="Library">Library</option>
+            <option value="Park">Park</option>
+            <option value="Gym">Gym</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Downtown">Downtown</option>
+            <option value="Plaza">Plaza</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <hr />
+
+        <!-- List of spots (user-added) -->
+        <ul id="spot-list"></ul>
+
+        <p id="coming-soon">More features<br />coming soon</p>
+
+        <hr />
+
+        <button id="about-btn">ℹ️ ABOUT</button>
+        <button id="feedback-btn">❤️ FEEDBACK</button>
+      </div>
+
+      <!-- BOTTOM LEFT - Collapse toggle -->
+      <button id="collapse-btn">&#8249;</button>
+    </aside>
+
+    <!-- RIGHT - Map area -->
+    <main id="map-container">
+      <!-- TOP LEFT - Search bar -->
+      <div id="search-bar">
+        <input type="text" id="search-input" placeholder="Search spots..." />
+        <span id="search-icon">🔍</span>
+        <span id="settings-icon">⚙️</span>
+      </div>
+
+      <!-- Leaflet map renders here -->
+      <div id="map"></div>
+
+    </main>
+
+    <!-- MODAL — Create a spot (hidden by default) -->
+    <div id="modal" class="hidden">
+        <div id="modal-content">
+            <h2>Add a Spot</h2>
+            <input type="text" id="spot-name" placeholder="Name *" />
+            <textarea id="spot-desc" placeholder="Description (optional)"></textarea>
+            <select id="spot-category">
+                <option value="">Select a category *</option>
+                <option value="Boba/Coffee Shop">Cafe / Coffee Shop</option>
+                <option value="Library">Library</option>
+                <option value="Park">Park</option>
+                <option value="Gym">Gym</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Downtown">Downtown</option>
+                <option value="Plaza">Plaza</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="number" id="spot-lat" placeholder="Latitude *" />
+            <input type="number" id="spot-lng" placeholder="Longitude *" />
+            <div id="modal-buttons">
+                <button id="submit-spot">Submit</button>
+                <button id="cancel-spot">Cancel</button>
+            </div>
+        </div>
+    </div>
+      <!-- Leaflet JS -->
+       <script
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+       </script>
+
+       <!-- Supabase JS -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+        </script>
+
+        <script
+            src="app.js">
+        </script>
+  </body>
+</html>
