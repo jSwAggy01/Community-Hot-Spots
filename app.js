@@ -43,9 +43,9 @@ function getMarker(category) {
 // ============================================================
 // SETTINGS GEAR — toggles legend visibility
 // ============================================================
-document.getElementById('settings-icon').addEventListener('click', () => {
-  const legend = document.getElementById('legend');
-  legend.classList.toggle('hidden');
+document.getElementById("settings-icon").addEventListener("click", () => {
+  const legend = document.getElementById("legend");
+  legend.classList.toggle("hidden");
 });
 
 // ============================================================
@@ -53,11 +53,11 @@ document.getElementById('settings-icon').addEventListener('click', () => {
 // Dynamically builds legend from categoryColors object
 // ============================================================
 function buildLegend() {
-  const list = document.getElementById('legend-list');
-  list.innerHTML = '';
+  const list = document.getElementById("legend-list");
+  list.innerHTML = "";
 
   Object.entries(categoryColors).forEach(([category, color]) => {
-    const li = document.createElement('li');
+    const li = document.createElement("li");
     li.innerHTML = `
       <div class="legend-dot" style="background-color: ${color};"></div>
       <span>${category}</span>
@@ -77,12 +77,11 @@ const map = L.map("map", {
   zoomControl: false, // manually added to bottom right
 });
 
-// OpenStreetMap tile layer (free API)
-L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-  maxZoom: 20,
-  attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+// CartoDB tile layer (free API)
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
+  maxZoom: 19,
 }).addTo(map);
-
 
 // Move zoom controls to bottom right to match wireframe
 L.control.zoom({ position: "bottomright" }).addTo(map);
@@ -101,8 +100,8 @@ async function loadSpots() {
 
   // Clear the sidebar spot list
   document.getElementById("spot-list").innerHTML = "";
-  document.getElementById('search-input').value = '';
-  document.getElementById('category-select').value = 'all';
+  document.getElementById("search-input").value = "";
+  document.getElementById("category-select").value = "all";
 
   // Fetch all spots from Supabase
   const { data, error } = await client
@@ -183,46 +182,46 @@ function addMarker(spot) {
 // Adds a spot to the sidebar <ul> list
 // ============================================================
 function addListItem(spot) {
-    const li = document.createElement('li');
-    li.textContent = spot.name;
-    li.dataset.id = spot.id;
+  const li = document.createElement("li");
+  li.textContent = spot.name;
+  li.dataset.id = spot.id;
 
-    // Clicking a list item flies the map to that marker
-    // and opens its popup
-    li.addEventListener('click', () => {
-        const marker = allMarkers.find(m => m.spotData.id === spot.id);
-        if (marker) {
-            map.flyTo([spot.lat, spot.lng], 15);
-            marker.openPopup();
-        }
-    });
+  // Clicking a list item flies the map to that marker
+  // and opens its popup
+  li.addEventListener("click", () => {
+    const marker = allMarkers.find((m) => m.spotData.id === spot.id);
+    if (marker) {
+      map.flyTo([spot.lat, spot.lng], 15);
+      marker.openPopup();
+    }
+  });
 
-    document.getElementById('spot-list').appendChild(li);
+  document.getElementById("spot-list").appendChild(li);
 }
 
 // ============================================================
 // SIDEBAR COLLAPSE
 // ============================================================
-const sidebar = document.getElementById('sidebar');
-const collapseBtn = document.getElementById('collapse-btn');
-const showTab = document.getElementById('show-sidebar-tab');
-collapseBtn.addEventListener('click', () => {
-    sidebar.classList.add('collapsed');
-    showTab.classList.add('visible');
-    
-    // TELL LEAFLET TO RESIZE AFTER ANIMATION FINISHES (300ms)
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 300);
+const sidebar = document.getElementById("sidebar");
+const collapseBtn = document.getElementById("collapse-btn");
+const showTab = document.getElementById("show-sidebar-tab");
+collapseBtn.addEventListener("click", () => {
+  sidebar.classList.add("collapsed");
+  showTab.classList.add("visible");
+
+  // TELL LEAFLET TO RESIZE AFTER ANIMATION FINISHES (300ms)
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 300);
 });
-showTab.addEventListener('click', () => {
-    sidebar.classList.remove('collapsed');
-    showTab.classList.remove('visible');
-    
-    // TELL LEAFLET TO RESIZE AFTER ANIMATION FINISHES (300ms)
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 300);
+showTab.addEventListener("click", () => {
+  sidebar.classList.remove("collapsed");
+  showTab.classList.remove("visible");
+
+  // TELL LEAFLET TO RESIZE AFTER ANIMATION FINISHES (300ms)
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 300);
 });
 
 // ============================================================
@@ -244,21 +243,21 @@ buildLegend();
 let clickedLat = null;
 let clickedLng = null;
 
-map.on('click', function(e) {
-    clickedLat = e.latlng.lat.toFixed(6);
-    clickedLng = e.latlng.lng.toFixed(6);
+map.on("click", function (e) {
+  clickedLat = e.latlng.lat.toFixed(6);
+  clickedLng = e.latlng.lng.toFixed(6);
 
-    // 1. CLEAR PREVIOUS VALUES SO OLD DATA DOESN'T PERSIST!
-    document.getElementById('spot-name').value = '';
-    document.getElementById('spot-desc').value = '';
-    document.getElementById('spot-category').value = '';
+  // 1. CLEAR PREVIOUS VALUES SO OLD DATA DOESN'T PERSIST!
+  document.getElementById("spot-name").value = "";
+  document.getElementById("spot-desc").value = "";
+  document.getElementById("spot-category").value = "";
 
-    // 2. Pre-fill the lat/lng fields in the modal
-    document.getElementById('spot-lat').value = clickedLat;
-    document.getElementById('spot-lng').value = clickedLng;
+  // 2. Pre-fill the lat/lng fields in the modal
+  document.getElementById("spot-lat").value = clickedLat;
+  document.getElementById("spot-lng").value = clickedLng;
 
-    // 3. Open the modal
-    document.getElementById('modal').classList.remove('hidden');
+  // 3. Open the modal
+  document.getElementById("modal").classList.remove("hidden");
 });
 
 // ============================================================
@@ -267,172 +266,175 @@ map.on('click', function(e) {
 // (user can type them in manually)
 // ============================================================
 
-document.getElementById('create-btn').addEventListener('click', () => {
-    // Clear previous values
-    document.getElementById('spot-name').value = '';
-    document.getElementById('spot-desc').value = '';
-    document.getElementById('spot-category').value = '';
-    document.getElementById('spot-lat').value = '';
-    document.getElementById('spot-lng').value = '';
+document.getElementById("create-btn").addEventListener("click", () => {
+  // Clear previous values
+  document.getElementById("spot-name").value = "";
+  document.getElementById("spot-desc").value = "";
+  document.getElementById("spot-category").value = "";
+  document.getElementById("spot-lat").value = "";
+  document.getElementById("spot-lng").value = "";
 
-    // Open the modal
-    document.getElementById('modal').classList.remove('hidden');
+  // Open the modal
+  document.getElementById("modal").classList.remove("hidden");
 });
 
 // ============================================================
 // CANCEL BUTTON
 // Closes the modal without doing anything
 // ============================================================
-document.getElementById('cancel-spot').addEventListener('click', () => {
-    document.getElementById('modal').classList.add('hidden');
+document.getElementById("cancel-spot").addEventListener("click", () => {
+  document.getElementById("modal").classList.add("hidden");
 });
 
 // ============================================================
 // SUBMIT SPOT
 // Validates the form, inserts into Supabase, refreshes map
 // ============================================================
-document.getElementById('submit-spot').addEventListener('click', async () => {
-    
-    // Grab form values
-    const name = document.getElementById('spot-name').value.trim();
-    const desc = document.getElementById('spot-desc').value.trim();
-    const category = document.getElementById('spot-category').value;
-    const lat = parseFloat(document.getElementById('spot-lat').value);
-    const lng = parseFloat(document.getElementById('spot-lng').value);
+document.getElementById("submit-spot").addEventListener("click", async () => {
+  // Grab form values
+  const name = document.getElementById("spot-name").value.trim();
+  const desc = document.getElementById("spot-desc").value.trim();
+  const category = document.getElementById("spot-category").value;
+  const lat = parseFloat(document.getElementById("spot-lat").value);
+  const lng = parseFloat(document.getElementById("spot-lng").value);
 
-    // Basic validation
-    if (!name) {
-        alert('Please enter a name for the spot.');
-        return;
-    }
-    if (!category) {
-        alert('Please select a category.');
-        return;
-    }
-    if (isNaN(lat) || isNaN(lng)) {
-        alert('Please provide valid coordinates.');
-        return;
-    }
+  // Basic validation
+  if (!name) {
+    alert("Please enter a name for the spot.");
+    return;
+  }
+  if (!category) {
+    alert("Please select a category.");
+    return;
+  }
+  if (isNaN(lat) || isNaN(lng)) {
+    alert("Please provide valid coordinates.");
+    return;
+  }
 
-    // Insert into Supabase
-    const { error } = await client
-        .from('spots')
-        .insert([{
-            name: name,
-            description: desc,
-            category: category,
-            lat: lat,
-            lng: lng
-        }]);
-    
-    if (error) {
-        console.error('Error inserting spot:', error);
-        alert('Something went wrong. Check the console.');
-        return;
-    }
+  // Insert into Supabase
+  const { error } = await client.from("spots").insert([
+    {
+      name: name,
+      description: desc,
+      category: category,
+      lat: lat,
+      lng: lng,
+    },
+  ]);
 
-    // Close modal and refresh the map + list
-    document.getElementById('modal').classList.add('hidden');
-    await loadSpots();
-})
+  if (error) {
+    console.error("Error inserting spot:", error);
+    alert("Something went wrong. Check the console.");
+    return;
+  }
+
+  // Close modal and refresh the map + list
+  document.getElementById("modal").classList.add("hidden");
+  await loadSpots();
+});
 
 // ============================================================
 // SEARCH
 // Filters markers and list items by spot name as you type
 // ============================================================
-document.getElementById('search-input').addEventListener('input', function() {
-    const query = this.value.toLowerCase().trim();
+document.getElementById("search-input").addEventListener("input", function () {
+  const query = this.value.toLowerCase().trim();
 
-    allMarkers.forEach(marker => {
-        const name = marker.spotData.name.toLowerCase();
-        const matches = name.includes(query);
+  allMarkers.forEach((marker) => {
+    const name = marker.spotData.name.toLowerCase();
+    const matches = name.includes(query);
 
-        if (matches) {
-            if (!map.hasLayer(marker)) map.addLayer(marker);
-        } else {
-            if (map.hasLayer(marker)) map.removeLayer(marker);
-        }
-    });
+    if (matches) {
+      if (!map.hasLayer(marker)) map.addLayer(marker);
+    } else {
+      if (map.hasLayer(marker)) map.removeLayer(marker);
+    }
+  });
 
-    // Filter sidebar list items
-    const items = document.querySelectorAll('#spot-list li');
-    items.forEach(item => {
-        const name = item.textContent.toLowerCase();
-        item.computedStyleMap.display = name.includes(query) ? 'block' : 'none';
-    });
+  // Filter sidebar list items
+  const items = document.querySelectorAll("#spot-list li");
+  items.forEach((item) => {
+    const name = item.textContent.toLowerCase();
+    item.computedStyleMap.display = name.includes(query) ? "block" : "none";
+  });
 });
 
 // ============================================================
 // CATEGORY FILTER
 // Shows only markers and list items matching selected category
 // ============================================================
-document.getElementById('category-select').addEventListener('change', function() {
+document
+  .getElementById("category-select")
+  .addEventListener("change", function () {
     const selected = this.value;
 
-    allMarkers.forEach(marker => {
-        const matches = 
-            selected === 'all' || marker.spotData.category === selected;
+    allMarkers.forEach((marker) => {
+      const matches =
+        selected === "all" || marker.spotData.category === selected;
 
-            if (matches) {
-                if (!map.hasLayer(marker)) map.addLayer(marker);
-            } else {
-                if (map.hasLayer(marker)) map.removeLayer(marker);
-            }
+      if (matches) {
+        if (!map.hasLayer(marker)) map.addLayer(marker);
+      } else {
+        if (map.hasLayer(marker)) map.removeLayer(marker);
+      }
     });
 
     // Filter sidebar list items
-    const items = document.querySelectorAll('#spot-list li');
-    items.forEach(item => {
-        const spotId = item.dataset.id;
-        const spot = allSpots.find(s => s.id === spotId);
-        const matches = selected === 'all' || spot.category === selected;
-        item.style.display = matches ? 'block' : 'none';
+    const items = document.querySelectorAll("#spot-list li");
+    items.forEach((item) => {
+      const spotId = item.dataset.id;
+      const spot = allSpots.find((s) => s.id === spotId);
+      const matches = selected === "all" || spot.category === selected;
+      item.style.display = matches ? "block" : "none";
     });
-});
+  });
 
 // ============================================================
 // ABOUT BUTTON
 // ============================================================
-document.getElementById('about-btn').addEventListener('click', () => {
-    document.getElementById('about-modal').classList.remove('hidden');
+document.getElementById("about-btn").addEventListener("click", () => {
+  document.getElementById("about-modal").classList.remove("hidden");
 });
 
-document.getElementById('close-about').addEventListener('click', () => {
-    document.getElementById('about-modal').classList.add('hidden');
+document.getElementById("close-about").addEventListener("click", () => {
+  document.getElementById("about-modal").classList.add("hidden");
 });
 
 // ============================================================
 // FEEDBACK BUTTON
 // ============================================================
-document.getElementById('feedback-btn').addEventListener('click', () => {
-    document.getElementById('feedback-name').value = '';
-    document.getElementById('feedback-text').value = '';
-    document.getElementById('feedback-modal').classList.remove('hidden');
+document.getElementById("feedback-btn").addEventListener("click", () => {
+  document.getElementById("feedback-name").value = "";
+  document.getElementById("feedback-text").value = "";
+  document.getElementById("feedback-modal").classList.remove("hidden");
 });
 
-document.getElementById('cancel-feedback').addEventListener('click', () => {
-    document.getElementById('feedback-modal').classList.add('hidden');
+document.getElementById("cancel-feedback").addEventListener("click", () => {
+  document.getElementById("feedback-modal").classList.add("hidden");
 });
 
-document.getElementById('submit-feedback').addEventListener('click', async () => {
-    const name    = document.getElementById('feedback-name').value.trim();
-    const message = document.getElementById('feedback-text').value.trim();
+document
+  .getElementById("submit-feedback")
+  .addEventListener("click", async () => {
+    const name = document.getElementById("feedback-name").value.trim();
+    const message = document.getElementById("feedback-text").value.trim();
 
     if (!message) {
-        alert('Please write something before submitting!');
-        return;
+      alert("Please write something before submitting!");
+      return;
     }
 
     const { error } = await supabase
-        .from('feedback')
-        .insert([{ name, message }]);
+      .from("feedback")
+      .insert([{ name, message }]);
 
     if (error) {
-        console.error('Feedback error:', error);
-        alert('Something went wrong. Check the console.');
-        return;
+      console.error("Feedback error:", error);
+      alert("Something went wrong. Check the console.");
+      return;
     }
 
-    alert('Thanks for your feedback! 🙏');
-    document.getElementById('feedback-modal').classList.add('hidden');
-});
+    alert("Thanks for your feedback! 🙏");
+    document.getElementById("feedback-modal").classList.add("hidden");
+  });
