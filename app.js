@@ -46,7 +46,7 @@ function getMarker(category) {
 // Loma Linda, Yucaipa, and San Bernardino
 // ============================================================
 const map = L.map("map", {
-  center: [34.0522, -117.1647],
+  center: [34.08, -117.1647],
   zoom: 12,
   zoomControl: false, // manually added to bottom right
 });
@@ -75,6 +75,8 @@ async function loadSpots() {
 
   // Clear the sidebar spot list
   document.getElementById("spot-list").innerHTML = "";
+  document.getElementById('search-input').value = '';
+  document.getElementById('category-select').value = 'all';
 
   // Fetch all spots from Supabase
   const { data, error } = await client
@@ -288,3 +290,57 @@ document.getElementById('submit-spot').addEventListener('click', async () => {
     document.getElementById('modal').classList.add('hidden');
     await loadSpots();
 })
+
+// ============================================================
+// SEARCH
+// Filters markers and list items by spot name as you type
+// ============================================================
+document.getElementById('search-input').addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+
+    allMarkers.forEach(marker => {
+        const name = marker.spotData.name.toLowerCase();
+        const matches = name.includes(query);
+
+        if (matches) {
+            if (!map.hasLayer(marker)) map.addLayer(marker);
+        } else {
+            if (map.hasLayer(marker)) map.removeLayer(marker);
+        }
+    });
+
+    // Filter sidebar list items
+    const items = document.querySelectorAll('#spot-list li');
+    items.forEach(item => {
+        const name = item.textContent.toLowerCase();
+        item.computedStyleMap.display = name.includes(query) ? 'block' : 'none';
+    });
+});
+
+// ============================================================
+// CATEGORY FILTER
+// Shows only markers and list items matching selected category
+// ============================================================
+document.getElementById('category-select').addEventListener('change', function() {
+    const selected = this.value;
+
+    allMarkers.forEach(marker => {
+        const matches = 
+            selected === 'all' || marker.spotData.category === selected;
+
+            if (matches) {
+                if (!map.hasLayer(marker)) map.addLayer(marker);
+            } else {
+                if (map.hasLayer(marker)) map.removeLayer(marker);
+            }
+    });
+
+    // Filter sidebar list items
+    const items = document.querySelectorAll('#spot-list li');
+    items.forEach(item => {
+        const spotId = item.dataset.id;
+        const spot = allSpots.find(s => s.id === spotId);
+        const matches = selected === 'all' || spot.category === selected;
+        item.style.display = matches ? 'block' : 'none';
+    });
+});
