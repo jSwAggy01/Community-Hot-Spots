@@ -1,6 +1,6 @@
 # Community Hot Spots 📍
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Coming_Soon!-success?style=for-the-badge)](#)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Live_Now!-success?style=for-the-badge)](https://jswaggy01.github.io/Community-Hot-Spots/)
 [![Snap Engineering Academy](https://img.shields.io/badge/Snap_Engineering_Academy-Portfolio_Project-yellow?style=for-the-badge)](#)
 
 A crowdsourced, web-based map application empowering young people to find and share the best spots for vibes, aesthetics, good food, and third-places in their community. Focuses currently on the Inland Empire region (Highland, Redlands, Loma Linda, Yucaipa, and San Bernardino). 
