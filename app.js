@@ -193,3 +193,98 @@ showTab.addEventListener('click', () => {
 // BOOT IT UP!
 // ============================================================
 loadSpots();
+
+// ============================================================
+// TRACK MAP CLICK
+// When user clicks the map, store coords and open the modal
+// ============================================================
+
+let clickedLat = null;
+let clickedLng = null;
+
+map.on('click', function(e) {
+    clickedLat = e.latlng.lat.toFixed(6);
+    clickedLng = e.latlng.lng.toFixed(6);
+
+    //Pre-fill the lat/lng fields in the modal
+    document.getElementById('spot-lat').value = clickedLat;
+    document.getElementById('spot-lng').value = clickedLng;
+
+    // Open the modal
+    document.getElementById('modal').classList.remove('hidden');
+});
+
+// ============================================================
+// CREATE BUTTON
+// Opens the modal without pre-filled coordinates
+// (user can type them in manually)
+// ============================================================
+
+document.getElementById('create-btn').addEventListener('click', () => {
+    // Clear previous values
+    document.getElementById('spot-name').value = '';
+    document.getElementById('spot-desc').value = '';
+    document.getElementById('spot-category').value = '';
+    document.getElementById('spot-lat').value = '';
+    document.getElementById('spot-lng').value = '';
+
+    // Open the modal
+    document.getElementById('modal').classList.remove('hidden');
+});
+
+// ============================================================
+// CANCEL BUTTON
+// Closes the modal without doing anything
+// ============================================================
+document.getElementById('cancel-spot').addEventListener('click', () => {
+    document.getElementById('modal').classList.add('hidden');
+});
+
+// ============================================================
+// SUBMIT SPOT
+// Validates the form, inserts into Supabase, refreshes map
+// ============================================================
+document.getElementById('submit-spot').addEventListener('click', async () => {
+    
+    // Grab form values
+    const name = document.getElementById('spot-name').value.trim();
+    const desc = document.getElementById('spot-desc').value.trim();
+    const category = document.getElementById('spot-category').value;
+    const lat = parseFloat(document.getElementById('spot-lat').value);
+    const lng = parseFloat(document.getElementById('spot-lng').value);
+
+    // Basic validation
+    if (!name) {
+        alert('Please enter a name for the spot.');
+        return;
+    }
+    if (!category) {
+        alert('Please select a category.');
+        return;
+    }
+    if (isNaN(lat) || isNaN(lng)) {
+        alert('Please provide valid coordinates.');
+        return;
+    }
+
+    // Insert into Supabase
+    const { error } = await client
+        .from('spots')
+        .insert([{
+            name: name,
+            description: desc,
+            category: category,
+            lat: lat,
+            lng: lng
+        }]);
+    
+    if (error) {
+        console.error('Error inserting spot:', error);
+        alert('Something went wrong. Check the console.');
+        return;
+    }
+
+    // Close modal and refresh the map + list
+    document.getElementById('modal').classList.add('hidden');
+    await loadSpots();
+})
