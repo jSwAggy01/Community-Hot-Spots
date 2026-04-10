@@ -1,2 +1,4 @@
 save-for-later.txt
 .gitignore
+.DS_Store
+Thumbs.db
