@@ -28,7 +28,7 @@
           🗂️ CATEGORY
           <select id="category-select">
             <option value="all">All</option>
-            <option value="Boba/Coffee Shop">Cafe / Coffee Shop</option>
+            <option value="Boba/Coffee Shop">Boba / Coffee Shop</option>
             <option value="Library">Library</option>
             <option value="Park">Park</option>
             <option value="Gym">Gym</option>
@@ -64,52 +64,100 @@
       <!-- TOP LEFT - Search bar -->
       <div id="search-bar">
         <input type="text" id="search-input" placeholder="Search spots..." />
-        <span id="search-icon">🔍</span>
+        <!-- <span id="search-icon">🔍</span> -->
         <span id="settings-icon">⚙️</span>
       </div>
 
       <!-- Leaflet map renders here -->
       <div id="map"></div>
-
     </main>
 
-    <!-- MODAL — Popup for creating a spot (hidden by default) -->
+    <!-- POPUP MODAL — Popup for creating a spot (hidden by default) -->
     <div id="modal" class="hidden">
-        <div id="modal-content">
-            <h2>Add a Spot</h2>
-            <input type="text" id="spot-name" placeholder="Name *" />
-            <textarea id="spot-desc" placeholder="Description (optional)"></textarea>
-            <select id="spot-category">
-                <option value="">Select a category *</option>
-                <option value="Boba/Coffee Shop">Cafe / Coffee Shop</option>
-                <option value="Library">Library</option>
-                <option value="Park">Park</option>
-                <option value="Gym">Gym</option>
-                <option value="Restaurant">Restaurant</option>
-                <option value="Downtown">Downtown</option>
-                <option value="Plaza">Plaza</option>
-                <option value="Other">Other</option>
-            </select>
-            <input type="number" id="spot-lat" placeholder="Latitude *" />
-            <input type="number" id="spot-lng" placeholder="Longitude *" />
-            <div id="modal-buttons">
-                <button id="submit-spot">Submit</button>
-                <button id="cancel-spot">Cancel</button>
-            </div>
+      <div id="modal-content">
+        <h2>Add a Spot</h2>
+        <input type="text" id="spot-name" placeholder="Name *" />
+        <textarea
+          id="spot-desc"
+          placeholder="Description (optional)"
+        ></textarea>
+        <select id="spot-category">
+          <option value="">Select a category *</option>
+          <option value="Boba/Coffee Shop">Boba / Coffee Shop</option>
+          <option value="Library">Library</option>
+          <option value="Park">Park</option>
+          <option value="Gym">Gym</option>
+          <option value="Restaurant">Restaurant</option>
+          <option value="Downtown">Downtown</option>
+          <option value="Plaza">Plaza</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="number" id="spot-lat" placeholder="Latitude *" />
+        <input type="number" id="spot-lng" placeholder="Longitude *" />
+        <div id="modal-buttons">
+          <button id="submit-spot">Submit</button>
+          <button id="cancel-spot">Cancel</button>
         </div>
+      </div>
     </div>
-      <!-- Leaflet JS -->
-       <script
-            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-       </script>
 
-       <!-- Supabase JS -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-        </script>
-        <!-- App JS (logic) -->
-        <script
-            src="app.js">
-        </script>
+    <!-- ABOUT MODAL -->
+    <div id="about-modal" class="hidden">
+      <div id="modal-content">
+        <h2>About</h2>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #c4c9e8">
+          Community Hot Spots is a crowd-sourced map of the people's favorite
+          third places, eats, and good vibes in the corner of the IE: Highland,
+          Redlands, Loma Linda, Yucaipa, and San Bernardino.
+          <br />
+          <br />
+          Mostly, it's just a map of my favorite spots :)
+        </p>
+        <!-- <p style="font-size: 0.85rem; line-height: 1.6; color: #c4c9e8">
+          Built with Leaflet.js, Supabase, and vanilla JavaScript as a portfolio
+          project for the Snap Engineering Academy.
+        </p> -->
+        <div id="modal-buttons">
+          <button id="close-about">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK MODAL -->
+    <div id="feedback-modal" class="hidden">
+      <div id="modal-content">
+        <h2>💬 Feedback</h2>
+        <p style="font-size: 0.85rem; color: #c4c9e8">
+          Got a suggestion or found a bug? Let us know!
+        </p>
+        <input
+          type="text"
+          id="feedback-name"
+          placeholder="Your name (optional)"
+        />
+        <textarea
+          id="feedback-text"
+          placeholder="Write your feedback here..."
+        ></textarea>
+        <div id="modal-buttons">
+          <button id="submit-feedback">Submit</button>
+          <button id="cancel-feedback">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP LEGEND -->
+    <div id="legend">
+      <h4>Categories</h4>
+      <ul id="legend-list"></ul>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- App JS (logic) -->
+    <script src="app.js"></script>
   </body>
 </html>

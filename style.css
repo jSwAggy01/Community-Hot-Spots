@@ -8,7 +8,7 @@
 body {
     display: flex;
     height: 100vh;
-    width: 100vm;
+    width: 100vw;
     overflow: hidden;
     background-color: #1a1d2e;
     color: #ffffff;
@@ -195,7 +195,7 @@ hr {
     background-color: #12152a;
     border: 1px solid #3a3f6e;
     border-radius: 20px;
-    padding: 6px, 12px;
+    padding: 6px 12px;
     gap: 8px;
     width: 300px;
 }
@@ -208,6 +208,7 @@ hr {
     color: #ffffff;
     font-size: 0.9rem;
     flex: 1;
+    margin-left: 10px;
 }
 
 #search-input::placeholder {
@@ -226,8 +227,58 @@ hr {
     height: 100vh;
 }
 
-/* Modal > Popup for adding a pot */
-#modal {
+/* Map > Legend */
+#legend {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  background-color: #12152a;
+  border: 1px solid #3a3f6e;
+  border-radius: 10px;
+  padding: 12px 16px;
+  z-index: 1000;
+  min-width: 160px;
+}
+
+/* Map > Legend > Title */
+#legend h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #c4c9e8;
+  margin-bottom: 8px;
+}
+
+/* Map > Legend > List */
+#legend-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Map > Legend > List > Items */
+#legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #ffffff;
+}
+
+/* Map > Legend > Dot */
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  flex-shrink: 0;
+}
+
+/* Modals > popups */
+#modal,
+#about-modal,
+#feedback-modal {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -249,8 +300,11 @@ hr {
     gap: 12px;
 }
 
-/* Modal > Popup for adding a pot > Hidden State */
-#modal.hidden {
+/* Modals > Hidden State */
+#modal.hidden,
+#legend.hidden,
+#about-modal.hidden,
+#feedback-modal.hidden {
     display: none;
 }
 

@@ -41,6 +41,32 @@ function getMarker(category) {
 }
 
 // ============================================================
+// SETTINGS GEAR — toggles legend visibility
+// ============================================================
+document.getElementById('settings-icon').addEventListener('click', () => {
+  const legend = document.getElementById('legend');
+  legend.classList.toggle('hidden');
+});
+
+// ============================================================
+// LEGEND
+// Dynamically builds legend from categoryColors object
+// ============================================================
+function buildLegend() {
+  const list = document.getElementById('legend-list');
+  list.innerHTML = '';
+
+  Object.entries(categoryColors).forEach(([category, color]) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <div class="legend-dot" style="background-color: ${color};"></div>
+      <span>${category}</span>
+    `;
+    list.appendChild(li);
+  });
+}
+
+// ============================================================
 // MAP SETUP
 // Centered between Redlands, Highland,
 // Loma Linda, Yucaipa, and San Bernardino
@@ -180,21 +206,35 @@ function addListItem(spot) {
 const sidebar = document.getElementById('sidebar');
 const collapseBtn = document.getElementById('collapse-btn');
 const showTab = document.getElementById('show-sidebar-tab');
-
 collapseBtn.addEventListener('click', () => {
     sidebar.classList.add('collapsed');
     showTab.classList.add('visible');
+    
+    // TELL LEAFLET TO RESIZE AFTER ANIMATION FINISHES (300ms)
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
 });
-
 showTab.addEventListener('click', () => {
     sidebar.classList.remove('collapsed');
     showTab.classList.remove('visible');
+    
+    // TELL LEAFLET TO RESIZE AFTER ANIMATION FINISHES (300ms)
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
 });
 
 // ============================================================
 // BOOT IT UP!
 // ============================================================
 loadSpots();
+buildLegend();
+
+// ============================================================
+// TRACK MAP CLICK
+// When user clicks the map, store coords and open the modal
+// ============================================================
 
 // ============================================================
 // TRACK MAP CLICK
@@ -208,11 +248,16 @@ map.on('click', function(e) {
     clickedLat = e.latlng.lat.toFixed(6);
     clickedLng = e.latlng.lng.toFixed(6);
 
-    //Pre-fill the lat/lng fields in the modal
+    // 1. CLEAR PREVIOUS VALUES SO OLD DATA DOESN'T PERSIST!
+    document.getElementById('spot-name').value = '';
+    document.getElementById('spot-desc').value = '';
+    document.getElementById('spot-category').value = '';
+
+    // 2. Pre-fill the lat/lng fields in the modal
     document.getElementById('spot-lat').value = clickedLat;
     document.getElementById('spot-lng').value = clickedLng;
 
-    // Open the modal
+    // 3. Open the modal
     document.getElementById('modal').classList.remove('hidden');
 });
 
@@ -343,4 +388,51 @@ document.getElementById('category-select').addEventListener('change', function()
         const matches = selected === 'all' || spot.category === selected;
         item.style.display = matches ? 'block' : 'none';
     });
+});
+
+// ============================================================
+// ABOUT BUTTON
+// ============================================================
+document.getElementById('about-btn').addEventListener('click', () => {
+    document.getElementById('about-modal').classList.remove('hidden');
+});
+
+document.getElementById('close-about').addEventListener('click', () => {
+    document.getElementById('about-modal').classList.add('hidden');
+});
+
+// ============================================================
+// FEEDBACK BUTTON
+// ============================================================
+document.getElementById('feedback-btn').addEventListener('click', () => {
+    document.getElementById('feedback-name').value = '';
+    document.getElementById('feedback-text').value = '';
+    document.getElementById('feedback-modal').classList.remove('hidden');
+});
+
+document.getElementById('cancel-feedback').addEventListener('click', () => {
+    document.getElementById('feedback-modal').classList.add('hidden');
+});
+
+document.getElementById('submit-feedback').addEventListener('click', async () => {
+    const name    = document.getElementById('feedback-name').value.trim();
+    const message = document.getElementById('feedback-text').value.trim();
+
+    if (!message) {
+        alert('Please write something before submitting!');
+        return;
+    }
+
+    const { error } = await supabase
+        .from('feedback')
+        .insert([{ name, message }]);
+
+    if (error) {
+        console.error('Feedback error:', error);
+        alert('Something went wrong. Check the console.');
+        return;
+    }
+
+    alert('Thanks for your feedback! 🙏');
+    document.getElementById('feedback-modal').classList.add('hidden');
 });
