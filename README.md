@@ -7,11 +7,13 @@ A crowdsourced, web-based map application empowering young people to find and sh
 
 Whether you're looking for an aesthetic library to study in, a highly-rated local gym, or a top-tier boba shop, Community Hot Spots helps you discover it!
 
+![Community Hot Spots Demo](docs/demo.gif)
+
 ---
 
 ## 📖 Background
 
-Community Hot Spots is a project I built for the Snap Engineering Academy. The idea sparked while I was taking computer science classes at my community college to deepen my knowledge, particularly for the government sector tech stack. I had an excellent professor teaching GIS, and I found the concept of interacting with data geospatially incredible. Realizing that Snap also uses a map to showcase where friends are and where high activity areas are located, I knew this would be the perfect project.
+Community Hot Spots is a project I built for the Snap Engineering Academy. The idea sparked while I was taking computer science classes at my community college to deepen my knowledge, particularly for the government sector tech stack. Alongside courses in Web Development and Relational Database Management Systems, I had an excellent professor teaching GIS. I found the concept of interacting with data geospatially incredible, and combining it with the web and database skills I was acquiring felt like the perfect challenge. Realizing that Snap also uses a map to showcase where friends are and where high activity areas are located, I knew this would be the perfect project.
 
 After attending a Snap Engineering Academy alum panel, I spoke with an alum named Bee Du. He shared valuable insights about the application process and the types of projects they look for, noting how competitive the academy has become. Even though he didn't use AI at the time, I chose to embrace it to accelerate my learning. 
 
