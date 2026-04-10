@@ -9,6 +9,18 @@ Whether you're looking for an aesthetic library to study in, a highly-rated loca
 
 ---
 
+## 📖 Background
+
+Community Hot Spots is a project I built for the Snap Engineering Academy. The idea sparked while I was taking computer science classes at my community college to deepen my knowledge, particularly for the government sector tech stack. I had an excellent professor teaching GIS, and I found the concept of interacting with data geospatially incredible. Realizing that Snap also uses a map to showcase where friends are and where high activity areas are located, I knew this would be the perfect project.
+
+After attending a Snap Engineering Academy alum panel, I spoke with an alum named Bee Du. He shared valuable insights about the application process and the types of projects they look for, noting how competitive the academy has become. Even though he didn't use AI at the time, I chose to embrace it to accelerate my learning. 
+
+As a disclaimer, this project utilized AI assistance. However, I hand coded every line you see. In an evolving technological age, I believe AI should be used as a tool and a learning aid, rather than just a shortcut for building software. I learned so much reading line by line what it takes to build a project that started simple but grew complex with custom styling and interacting components.
+
+A month in advance, I began planning the vision for my app, deciding on the technologies, wireframing, mapping the user flow, and finding inspiration. Through careful planning, product thinking, and AI engineering, a workflow that could have taken months was completed in just a couple of weeks. As a forward-thinking technologist, I understand both the power and the limitations of AI. Leveraged properly, it is a game changer that allows engineers to focus more intentional time and intellectual capacity on system design instead of pure coding.
+
+---
+
 ## 🌟 Features
 
 * **Interactive Map:** Pan, zoom, and explore different parts of the community.
