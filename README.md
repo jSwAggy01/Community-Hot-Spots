@@ -1,7 +1,6 @@
 # Community Hot Spots 📍
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Live_Now!-success?style=for-the-badge)](https://jswaggy01.github.io/Community-Hot-Spots/)
-[![Snap Engineering Academy](https://img.shields.io/badge/Snap_Engineering_Academy-Portfolio_Project-yellow?style=for-the-badge)](#)
 
 A crowdsourced, web-based map application empowering young people to find and share the best spots for vibes, aesthetics, good food, and third-places in their community. Focuses currently on the Inland Empire region (Highland, Redlands, Loma Linda, Yucaipa, and San Bernardino). 
 
@@ -13,13 +12,9 @@ Whether you're looking for an aesthetic library to study in, a highly-rated loca
 
 ## 📖 Background
 
-Community Hot Spots is a project I built for the Snap Engineering Academy. The idea sparked while I was taking computer science classes at my community college to deepen my knowledge, particularly for the government sector tech stack. Alongside courses in Web Development and Relational Database Management Systems, I had an excellent professor teaching GIS. I found the concept of interacting with data geospatially incredible, and combining it with the web and database skills I was acquiring felt like the perfect challenge. Realizing that Snap also uses a map to showcase where friends are and where high activity areas are located, I knew this would be the perfect project.
+Community Hot Spots is a personal project I built to deepen my knowledge, particularly for the government sector tech stack. The idea sparked while I was taking computer science classes at my community college. Alongside courses in Web Development and Relational Database Management Systems, I had an excellent professor teaching GIS. I found the concept of interacting with data geospatially incredible, and combining it with the web and database skills I was acquiring felt like the perfect challenge.
 
-After attending a Snap Engineering Academy alum panel, I spoke with an alum named Bee Du. He shared valuable insights about the application process and the types of projects they look for, noting how competitive the academy has become. Even though he didn't use AI at the time, I chose to embrace it to accelerate my learning. 
-
-As a disclaimer, this project utilized AI assistance. However, I hand coded every line you see. In an evolving technological age, I believe AI should be used as a tool and a learning aid, rather than just a shortcut for building software. I learned so much reading line by line what it takes to build a project that started simple but grew complex with custom styling and interacting components.
-
-A month in advance, I began planning the vision for my app, deciding on the technologies, wireframing, mapping the user flow, and finding inspiration. Through careful planning, product thinking, and AI engineering, a workflow that could have taken months was completed in just a couple of weeks. As a forward-thinking technologist, I understand both the power and the limitations of AI. Leveraged properly, it is a game changer that allows engineers to focus more intentional time and intellectual capacity on system design instead of pure coding.
+A month in advance, I began planning the vision for my app, deciding on the technologies, wireframing, mapping the user flow, and finding inspiration. Through careful planning and product thinking, a workflow that could have taken months was completed in just a couple of weeks.
 
 ---
 
@@ -41,6 +36,7 @@ This project was built from the ground up using core web technologies to showcas
 * **Vanilla JavaScript:** Frontend logic, DOM manipulation, asynchronous fetching, and event handling.
 * **Leaflet.js & Stadia Maps:** Open-source interactive map rendering and dark-mode tile layers.
 * **Supabase (PostgreSQL):** Open-source Firebase alternative functioning as the backend database.
+* **Generative AI:** Leveraged as a pair-programming tool and learning aid to accelerate development.
 
 ## 📂 Project Structure
 
@@ -107,4 +103,4 @@ If given more time, these are features that would elevate the platform:
 4. **Clustering:** Implement `Leaflet.markercluster` to group markers when zooming out to avoid visual clutter as the app scales.
 
 ---
-*Created as a portfolio project for the Snap Engineering Academy (2026).*
+*Created as a personal portfolio project (2026).*
